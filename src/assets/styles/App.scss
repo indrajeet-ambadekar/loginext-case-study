@@ -88,3 +88,57 @@
     }
   }
 }
+#editModal {
+  .elc-ui-dialog {
+    padding: 0;
+    .elc-ui-dialog-header {
+      padding: 1rem;
+    }
+    .dialog-content {
+      padding: 1rem 0;
+      .dialog-title {
+        border-bottom: 1px solid $text-grey;
+        padding: 0 1rem;
+        margin-top: -3rem;
+        .elc_ui-text {
+          padding-bottom: 1rem;
+        }
+      }
+      .dialog-body {
+        padding: 1rem;
+        .row {
+          margin-bottom: 1rem;
+          .form-input {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+            height: 40px;
+            input {
+              height: 40px;
+            }
+          }
+        }
+      }
+      .dialog-footer {
+        border-top: 1px solid $text-grey;
+        padding: 1rem;
+        @include vertical-center-right;
+        height: 50px;
+        .dismiss-dialog {
+          border: 1px solid $text-grey;
+          border-radius: 4px;
+          height: 36px;
+          margin-top: 30px;
+        }
+        .submit-btn {
+          background-color: $text-blue;
+          border-radius: 4px;
+          height: 36px;
+          color: $text-white;
+          margin-top: 30px;
+        }
+      }
+    }
+  }
+}

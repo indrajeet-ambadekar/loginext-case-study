@@ -15,7 +15,7 @@ function App() {
     _fetchUserList();
   }, []);
   const _fetchUserList = async () => {
-    // getUsers();
+    getUsers();
   };
   return (
     <div className='App'>

@@ -23,22 +23,22 @@ export default ({ user, removeUser, likeUser, editUser }) => {
           </div>
           <div className='row light'>
             <i className='fas fa-globe' />
-            http://www.google.com
+            {user?.website || "http://www.google.com"}
           </div>
         </div>
         <div className='btn-cntnr'>
           <Column md={4}>
-            <button onClick={() => likeUser(user.id.value)}>
+            <button onClick={() => likeUser(user.email)}>
               <i className={`${user.isLiked ? "fas" : "far"} fa-heart heart`} />
             </button>
           </Column>
           <Column md={4}>
-            <button onClick={() => editUser(user.id.value)}>
+            <button onClick={() => editUser(user.email)}>
               <i className='fas fa-pencil-alt' />
             </button>
           </Column>
           <Column md={4}>
-            <button onClick={() => removeUser(user.id.value)}>
+            <button onClick={() => removeUser(user.email)}>
               <i className='fas fa-trash-alt' />
             </button>
           </Column>

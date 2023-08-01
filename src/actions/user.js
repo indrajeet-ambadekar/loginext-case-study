@@ -28,5 +28,6 @@ export default class UserActions {
   };
   editUser = (index, data) => {
     this.dispatch({ type: "EDIT_USER", payload: { index, data } });
+    return Promise.resolve();
   };
 }
