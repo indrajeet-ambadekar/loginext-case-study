@@ -5,15 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UiProvidor, ToastProvider } from "elysium-cloud-ui";
 import "elysium-cloud-ui/index.css";
+import store from "./store";
+import { Provider } from "react-redux";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <ToastProvider>
+  <ToastProvider>
+    <Provider store={store}>
       <UiProvidor>
         <App />
       </UiProvidor>
-    </ToastProvider>
-  </React.StrictMode>
+    </Provider>
+  </ToastProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,23 +1,33 @@
 import logo from "./logo.svg";
 import "./assets/styles/App.scss";
-
+import { AppHeader, Text, useToast } from "elysium-cloud-ui";
+import { useEffect, useState } from "react";
+import GridContainer from "./components/container";
+import UserActions from "./actions/user";
+import ReqLoader from "./components/loader";
+import { useSelector } from "react-redux";
 function App() {
+  const getPeopleState = (state) => state.people;
+  const loading = useSelector((rootState) => getPeopleState(rootState).loading);
+
+  const { getUsers } = new UserActions();
+  useEffect(() => {
+    _fetchUserList();
+  }, []);
+  const _fetchUserList = async () => {
+    // getUsers();
+  };
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
+      {loading && <ReqLoader />}
+
+      <AppHeader className='appHeader'>
+        <Text type='h2' className='page-title'>
+          {" "}
+          LogiNext Case Study
+        </Text>
+      </AppHeader>
+      <GridContainer />
     </div>
   );
 }

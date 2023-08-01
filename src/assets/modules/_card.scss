@@ -1,0 +1,149 @@
+@mixin card-shadow {
+  -webkit-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+@mixin card-shadow-white {
+  -webkit-box-shadow: 1px 2px 5px 0px rgba(255, 255, 255, 0.25);
+  -moz-box-shadow: 1px 2px 5px 0px rgba(255, 255, 255, 0.25);
+  box-shadow: 1px 2px 5px 0px rgba(255, 255, 255, 0.25);
+}
+@mixin fancy-red-border {
+  position: relative;
+  min-height: 30vh;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: solid $text-red;
+    border-width: 12px 12px 0 0;
+    display: block;
+  }
+  &:before {
+    right: 5px;
+    top: 5px;
+  }
+  &:after {
+    border-width: 0 0 12px 12px;
+    bottom: 5px;
+    left: 5px;
+  }
+}
+
+@mixin button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+@mixin white-blur-card {
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(5px);
+}
+
+@mixin button-gradient {
+  background: rgb(48, 116, 209);
+  background: linear-gradient(
+    90deg,
+    rgba(48, 116, 209, 1) 0%,
+    rgba(0, 60, 123, 1) 100%
+  );
+}
+@mixin button-gradient-red {
+  background: rgba(220, 72, 72, 1);
+  background: linear-gradient(
+    90deg,
+    rgb(240, 131, 131) 0%,
+    rgb(248, 40, 40) 100%
+  );
+}
+@mixin text-gradient-orange {
+  background: #f08383;
+  background: -webkit-linear-gradient(
+    to right,
+    #f08383 0%,
+    #e84d4d 50%,
+    #f82828 100%
+  );
+  background: -moz-linear-gradient(
+    to right,
+    #f08383 0%,
+    #e84d4d 50%,
+    #f82828 100%
+  );
+  background: linear-gradient(to right, #f08383 0%, #e84d4d 50%, #f82828 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin text-gradient-white {
+  background: #fff;
+  background: -webkit-linear-gradient(
+    to right,
+    #c5c5c5 0%,
+    #ececec 50%,
+    #ffffff 100%
+  );
+  background: -moz-linear-gradient(
+    to right,
+    #c5c5c5 0%,
+    #ececec 50%,
+    #ffffff 100%
+  );
+  background: linear-gradient(to right, #c5c5c5 0%, #ececec 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin no-text-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  outline: none !important;
+}
+@mixin flex-col-cntnr {
+  display: flex;
+  flex-direction: column;
+}
+@mixin flex-row-cntnr {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin vertical-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+@mixin vertical-center-left {
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: center;
+  align-content: center;
+}
+@mixin vertical-center-right {
+  display: flex;
+  justify-content: flex-end !important;
+  align-items: center;
+  align-content: center;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
