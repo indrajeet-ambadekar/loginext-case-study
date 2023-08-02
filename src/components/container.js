@@ -1,26 +1,29 @@
-import React, { useCallback, useState } from "react";
+import React, { useContext, useState } from "react";
 import Card from "./card";
-import { useSelector } from "react-redux";
-import UserActions from "../actions/user";
 import { Column, Dialog, Text, InputField, Button } from "elysium-cloud-ui";
-
+import { AppContext } from "../context";
 export default React.memo(({ ...props }) => {
-  const getPeopleState = (state) => state.people;
-  const store = useSelector((rootState) => getPeopleState(rootState));
+  const { users, setUsers } = useContext(AppContext);
   const [targetUser, setTargetUser] = useState(null);
   const [targetUserId, setTargetUserId] = useState(null);
   const [editModal, toggleEditModal] = useState(false);
-  const { deleteUser, likeUser, editUser } = new UserActions();
   const _removeUser = (email) => {
-    deleteUser(store.users.findIndex((i) => i.email == email));
+    setUsers(users.filter((i) => i.email !== email));
   };
   const _likeUser = (email) => {
-    likeUser(store.users.findIndex((x) => x.email == email));
+    let index = users.findIndex((x) => x.email == email);
+    let _users = new Array(...users);
+    if (_users[index]["isLiked"]) {
+      _users[index]["isLiked"] = false;
+    } else {
+      _users[index]["isLiked"] = true;
+    }
+    setUsers(_users);
   };
   const _editUser = (email) => {
-    let index = store.users.findIndex((x) => x.email == email);
+    let index = users.findIndex((x) => x.email == email);
     setTargetUserId(index);
-    setTargetUser(JSON.parse(JSON.stringify(store.users[index])));
+    setTargetUser(JSON.parse(JSON.stringify(users[index])));
     toggleEditModal(true);
   };
   const _hideModal = () => {
@@ -40,14 +43,15 @@ export default React.memo(({ ...props }) => {
     setTargetUser({ ..._user });
   };
   const _saveUser = () => {
-    editUser(targetUserId, targetUser).then((x) => {
-      _hideModal();
-    });
+    let _users = new Array(...users);
+    _users[targetUserId] = { ...targetUser };
+    setUsers(_users);
+    _hideModal();
   };
 
   return (
     <div className='user-cntnr'>
-      {store.users.map((user, index) => (
+      {users.map((user, index) => (
         <Card
           user={user}
           key={index}

@@ -5,29 +5,34 @@ import { useEffect, useState } from "react";
 import GridContainer from "./components/container";
 import UserActions from "./actions/user";
 import ReqLoader from "./components/loader";
-import { useSelector } from "react-redux";
+import { AppContext } from "./context";
 function App() {
-  const getPeopleState = (state) => state.people;
-  const loading = useSelector((rootState) => getPeopleState(rootState).loading);
-
+  const [loading, toggleLoading] = useState(false);
+  const [users, setUsers] = useState([]);
   const { getUsers } = new UserActions();
   useEffect(() => {
+    toggleLoading(true);
     _fetchUserList();
   }, []);
   const _fetchUserList = async () => {
-    getUsers();
+    let users = await getUsers();
+    setUsers(users);
+    toggleLoading(false);
   };
   return (
     <div className='App'>
-      {loading && <ReqLoader />}
+      <AppContext.Provider value={{ users, setUsers }}>
+        {loading && <ReqLoader />}
 
-      <AppHeader className='appHeader'>
-        <Text type='h2' className='page-title'>
-          {" "}
-          LogiNext Case Study
-        </Text>
-      </AppHeader>
-      <GridContainer />
+        <AppHeader className='appHeader'>
+          <Text type='h2' className='page-title'>
+            {" "}
+            LogiNext Case Study
+          </Text>
+        </AppHeader>
+
+        <GridContainer />
+      </AppContext.Provider>
     </div>
   );
 }

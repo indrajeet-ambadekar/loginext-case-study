@@ -1,6 +1,6 @@
 import React from "react";
 import { Column } from "elysium-cloud-ui";
-export default ({ user, removeUser, likeUser, editUser }) => {
+export default ({ user, removeUser, likeUser, editUser, index }) => {
   return (
     <Column md={3}>
       <div className='user-card'>
